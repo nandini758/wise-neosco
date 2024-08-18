@@ -5,6 +5,7 @@ import ShoppingCarts from './ShoppingCarts';
 import SearchBox from './SearchBox';
 import Filter from './Filter';
 function Navbar() {
+  const[searchItem, setSearchItem]= useState('')
   const [activeSection, setActiveSection] = useState('products'); // default to products
   const[isOpen, setIsOpen]= useState(false)
   const[search, setSearch]= useState('')
@@ -71,13 +72,13 @@ function Navbar() {
       </div>
 
       {/* Conditional rendering based on the active section */}
-      <SearchBox isOpen={isOpen} setIsOpen={setIsOpen} search={search} setSearch={setSearch}/>
+      <SearchBox isOpen={isOpen} setIsOpen={setIsOpen} search={search} setSearch={setSearch} searchItem={searchItem} setSearchItem={setSearchItem}/>
       {isOpen && <div className="w-full">
         <Filter filters={filters} setFilters={setFilters} />
       </div>}
       
       <div className='p-4'>
-        {activeSection === 'products' && <CartList addToCart={addToCart} search={search}/>}
+        {activeSection === 'products' && <CartList  addToCart={addToCart} searchItem={searchItem}/>}
         {activeSection === 'cart' && <div><ShoppingCarts cart={cart} handleRemoveItem={handleRemoveItem}/></div>}
       </div>
     </div>

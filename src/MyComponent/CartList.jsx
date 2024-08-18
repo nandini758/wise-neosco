@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Cart from './Cart';
 import Filter from './Filter';
 
-const CartList = ({ addToCart , search}) => {
+const CartList = ({ addToCart , searchItem}) => {
   // const[search, setSearch]= useState()
     const [filters, setFilters] = useState({
         gender: [],
@@ -355,14 +355,14 @@ const CartList = ({ addToCart , search}) => {
       const genderMatch = filters.gender.length === 0 || filters.gender.includes(item.gender);
       const colorMatch = filters.color.length === 0 || filters.color.includes(item.color);
       const typeMatch = filters.type.length === 0 || filters.type.includes(item.type);
-      const searchItem= item.name.toLowerCase().startsWith(search.toLowerCase())
+      const searchItems= searchItem.length===0? item : item.name.toLowerCase()===searchItem.toLowerCase() || item.color.toLowerCase()===searchItem.toLowerCase() ||  item.type.toLowerCase()===searchItem.toLowerCase()
       const priceMatch = filters.priceRange.length === 0 || filters.priceRange.some((range) => {
         const [min, max] = range.split("-").map(Number);
         return item.price >= min && item.price <= max;
 
       });
 
-      return genderMatch && colorMatch && typeMatch && priceMatch && searchItem;
+      return genderMatch && colorMatch && typeMatch && priceMatch && searchItems;
 
     });
   };
