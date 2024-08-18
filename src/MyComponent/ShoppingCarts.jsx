@@ -5,14 +5,14 @@ const ShoppingCarts = ({ cart, handleQuantityChange, handleRemoveItem }) => {
   return (
     <div className='m-5'>
     <div>Shopping Cart</div>
-    <div className='p-4 ml-20'>
+    <div className='p-4 sm:ml-20'>
         
       {cart.length === 0 ? (
         <div>Your cart is empty.</div>
       ) : (
-        <div className='flex flex-col gap-4 w-[40%]'>
+        <div className='flex flex-col gap-4 sm:w-[40%]'>
           {cart.map((item) => (
-            <div key={item.id} className='flex items-center bg-white p-4'>
+            <div key={item.id} className='flex max-sm:flex-col items-center bg-white p-4'>
               <img src={item.imageURL} alt={item.name} className='h-20 w-20 object-cover' />
               <div className='flex-1 mx-4'>
                 <div className='font-semibold'>{item.name}</div>
